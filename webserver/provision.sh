@@ -32,7 +32,8 @@ sudo service mongod start
 #usermod -g greg www-data
 
 sudo rm -rf /var/www/html
-mkdir /var/www/html
+cd /var/www
+mkdir html
 
 sudo cp ~/servers/webserver/default /etc/nginx/sites-available/default -f
 sudo chown -R www-data:www-data /var/www
@@ -42,5 +43,5 @@ sudo service nginx restart
 #Run the app in the background of the code
 #npm install
 sudo npm install pm2 -g
-pm2 kill
+#pm2 kill
 #pm2 start app.js
