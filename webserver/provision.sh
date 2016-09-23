@@ -23,7 +23,7 @@ WantedBy=multi-user.target
 EOF
 sudo service mongod start
 
-sudo ln -s /usr/bin/nodejs /usr/bin/node
+# sudo ln -s /usr/bin/nodejs /usr/bin/node
 
 #Add a user and group
 #adduser --disabled-password --gecos "" greg
