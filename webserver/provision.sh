@@ -1,6 +1,5 @@
 #!/bin/bash
 
-cd ~
 sudo apt-get update
 sudo apt-get install git nginx nodejs npm build-essential nodejs-legacy -y
 
