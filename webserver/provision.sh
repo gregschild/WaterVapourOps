@@ -32,8 +32,8 @@ sudo ln -s /usr/bin/nodejs /usr/bin/node
 #sudo chown -R greg:greg /var/www/html
 #usermod -g greg www-data
 
-sudo rm -rf /var/www/html
-mkdir /var/www/html
+#sudo rm -rf /var/www/html
+#mkdir /var/www/html
 
 sudo cp ~/servers/webserver/default /etc/nginx/sites-available/default -f
 sudo chown -R www-data:www-data /var/www
