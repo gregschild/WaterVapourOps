@@ -1,10 +1,11 @@
 #!/bin/bash
-
+cd ~
 sudo apt-get update
 sudo apt-get install git nginx nodejs npm build-essential nodejs-legacy -y
 
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
 echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+
 sudo apt-get update
 sudo apt-get install -y mongodb-org
 sudo apt-get install -y mongodb-org=3.2.9 mongodb-org-shell=3.2.9 mongodb-org-mongos=3.2.9 mongodb-org-tools=3.2.9
@@ -35,7 +36,23 @@ sudo service mongod start
 #sudo rm -rf /var/www/html
 #mkdir /var/www/html
 
-sudo cp ~/servers/webserver/default /etc/nginx/sites-available/default -f
+
+sudo tee -a /etc/nginx/sites-available/default <<EOF
+server {
+   listen 80;
+   server_name localhost:3000;
+   location / {
+       proxy_pass http://localhost:8085;
+       proxy_http_version 1.1;
+       proxy_set_header Upgrade $http_upgrade;
+       proxy_set_header Connection 'upgrade';
+       proxy_set_header Host $host;
+       proxy_cache_bypass $http_upgrade;
+   }
+}
+EOF
+
+#sudo cp ~/servers/webserver/default /etc/nginx/sites-available/default -f
 sudo chown -R www-data:www-data /var/www
 sudo chmod -R 775 /var/www
 sudo service nginx restart
@@ -43,5 +60,5 @@ sudo service nginx restart
 #Run the app in the background of the code
 #npm install
 sudo npm install pm2 -g
-#pm2 kill
+pm2 kill
 #pm2 start app.js
