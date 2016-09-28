@@ -1,1 +1,0 @@
-{"virtualbox":{"/home/vagrant/cookbooks":{"guestpath":"/home/vagrant/cookbooks","hostpath":"/Users/gsc06/sparta/sandbox/pokerproject/servers/cookbooks","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/gsc06/sparta/sandbox/pokerproject/servers","disabled":false,"__vagrantfile":true}}}
