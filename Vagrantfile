@@ -44,7 +44,7 @@ Vagrant.configure("2") do |config|
     db.vm.synced_folder "database/", "/root/servers/database"
     db.vm.provision "shell", inline: "sudo apt-get install curl"
     db.vm.provision "shell", inline: "curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -P chefdk -c stable -v 0.16.28"
-    db.vm.provision "shell", inline: "sudo chef-client --local-mode --runlist 'recipe[webserver]'"
+    db.vm.provision "shell", inline: "sudo chef-client --local-mode --runlist 'recipe[database]'"
     db.vm.network :private_network, ip: "192.10.10.200"
     db.vm.synced_folder "cookbooks/", "/home/vagrant/cookbooks"
   end
