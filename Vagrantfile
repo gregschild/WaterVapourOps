@@ -20,7 +20,6 @@ Vagrant.configure("2") do |config|
     app.vm.provision "shell", inline: "curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -P chefdk -c stable -v 0.16.28"
     app.vm.provision "shell", inline: "sudo chef-client --local-mode --runlist 'recipe[webserver]'"
     app.vm.network :private_network, ip: "192.10.10.100"
-    app.vm.network :forwarded_port, guest: 80, host: 3000
     app.vm.synced_folder "cookbooks/", "/home/vagrant/cookbooks"
   end
 
@@ -34,7 +33,6 @@ Vagrant.configure("2") do |config|
     api.vm.provision "shell", inline: "curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -P chefdk -c stable -v 0.16.28"
     api.vm.provision "shell", inline: "sudo chef-client --local-mode --runlist 'recipe[webserver]'"
     api.vm.network :private_network, ip: "192.10.10.150"
-    api.vm.network :forwarded_port, guest: 80, host: 3001
     api.vm.synced_folder "cookbooks/", "/home/vagrant/cookbooks"
   end
 
